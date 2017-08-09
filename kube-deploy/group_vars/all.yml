@@ -24,7 +24,7 @@ proxy_enable: false
 kubectl_endpoint: kube1
 kubelet_hostname_override: true
 init_token: ac7da3.b2cofcda6ab01976
-kube_version: v1.5.4
+kube_version: v1.6.4
 #
 #
 ## Kubernetes SDN Deployment Options:
@@ -47,7 +47,7 @@ kube_addons:
   - kube_helm
 #
 ## Helm Parameters:
-helm_version: v2.1.0
+helm_version: v2.5.1
 #
 ## Docker Daemon Options:
 # Shared mounts is required for several OpenStack Kolla-Kubernetes components.
