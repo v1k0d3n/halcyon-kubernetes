@@ -1,0 +1,36 @@
+---
+# Copyright 2016, AT&T, and it's Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+- name: placeholder for calico
+  debug: msg="calico"
+
+- name: placeholder for weave
+  debug: msg="starting calico installation"
+
+- name: ensure sdn bootstrap directory exists
+  file: path=/etc/kubernetes/halcyon/network state=directory
+  when: (kube_sdn_deploy == 'true')
+  ignore_errors: true
+
+- name: deploying calico for kubernetes
+  shell: kubectl apply -f http://docs.projectcalico.org/{{ calico_version }}/getting-started/kubernetes/installation/hosted/kubeadm/calico.yaml
+  register: deploy_calico
+  when: (kube_sdn == 'calico')
+  ignore_errors: true
+
+- name: weave deployment stdout
+  debug: msg={{ deploy_calico }}
+  ignore_errors: true

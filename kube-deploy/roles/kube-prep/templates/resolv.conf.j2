@@ -1,0 +1,9 @@
+# Created by halcyon-kubernetes
+search default.svc.{{ kube_service_dns_domain }} svc.{{ kube_service_dns_domain }} {{ kube_service_dns_domain }}
+nameserver {{ kube_dns_ip_addr }}
+nameserver {{ external_dns_ip_addr }}
+options ndots:5
+# These options enable hostname resolution to work when the kube-dns service
+# is unavalible without an absolutely atrocious performance impact.
+options timeout:1
+options attempts:1
